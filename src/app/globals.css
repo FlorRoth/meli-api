@@ -8,4 +8,30 @@
   color-scheme: light dark;
 }
 
+.product-img {
+  height: 120px;
+  width: 120px;
+}
+.view-product {
+  height: 400px;
+  width: 400px;
+}
+.product-description {
+  max-height: 250px;
+}
+
+@media (min-width: 768px) { 
+  .product-img {
+    height: 160px;
+    width: 160px;
+  }
+  .view-product {
+    height: 400px;
+    width: 400px;
+  }
+  .product-description {
+    max-height: 300px;
+  }
+}
+
 
