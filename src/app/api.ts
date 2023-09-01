@@ -24,7 +24,7 @@ const api = {
     search: (query: string)  =>  
         fetch (`https://api.mercadolibre.com/sites/MLA/search?q=${query}?&limit=4`)
         .then(res => res.json() as Promise <{
-            result : {
+            results : {
                 id: string,
                 title: string,
                 thumbnail: string,
@@ -40,16 +40,37 @@ const api = {
         )
     },
     categories: {
-        all:  
+        all: ()  =>  
         fetch (`https://api.mercadolibre.com/sites/MLA/categories?&limit=4`)
         .then(res => res.json() as Promise <{
-            result : {
+            [x: string]: any;
+            results : {
                 id: string,
-                name: string
+                name: string,
+            }[];
+        }>
+        ),
+        search: (id: string)  =>  
+        fetch (`https://api.mercadolibre.com/sites/MLA/search?category=${id}&limit=4`)
+        .then(res => res.json() as Promise <{
+            results : {
+                id: string,
+                title: string,
+                thumbnail: string,
+                price: number,
+                currency_id: string,
+                seller_address: {
+                    city: {
+                        name: string;
+                    };
+                };
             }[];
         }>
         )
-    }
+        
+    },
+       
+    
        
 }
 

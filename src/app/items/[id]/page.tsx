@@ -10,7 +10,7 @@ export default async function ItemPage({params : {id}}: {params: {id: string}}) 
             <article>
                <div className="block md:flex">
                   <img src={item.thumbnail} alt={item?.title} className="view-product"/>
-                  <div>
+                  <div className="ps-3">
                      <p className="text-2xl">{item.title}</p> 
                      <p className="font-semibold py-2 text-2xl">{Number(item.price).toLocaleString("es-AR",
                         {style: "currency",
