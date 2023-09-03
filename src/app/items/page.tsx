@@ -7,7 +7,7 @@ export default async function ItemsPage({searchParams}: {searchParams: {search: 
     return (
       <div>
          {results.length > 0 && 
-         <div className="bg-stone-50 rounded-sm">
+         <div className="bg-stone-50 rounded-md">
             <section className="p-5">
                <article>
                   {results.map((item : any) => (

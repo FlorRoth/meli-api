@@ -5,7 +5,7 @@ export default async function ItemPage({params : {id}}: {params: {id: string}}) 
 
 
     return (
-      <div className="bg-stone-50 rounded-sm">
+      <div className="bg-stone-50 rounded-md">
          <section  className="p-5">
             <article>
                <div className="block md:flex">
@@ -14,7 +14,7 @@ export default async function ItemPage({params : {id}}: {params: {id: string}}) 
                      <p className="text-2xl">{item.title}</p> 
                      <p className="font-semibold py-2 text-2xl">{Number(item.price).toLocaleString("es-AR",
                         {style: "currency",
-                        currency: item.currency_id
+                        currency: item.currency_id ? item.currency_id : 'ARS'
                         })}
                      </p>  
                      <p className="text-sm overflow-auto product-description">{item.description.plain_text}</p> 

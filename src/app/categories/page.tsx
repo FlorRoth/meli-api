@@ -1,23 +1,22 @@
 import Link from "next/link";
 import api from "../api";
+import SubCategories from "../subcategories";
 
 export default async function CategoriesPage() {
    const results = await api.categories.all();
    return (
      <div>
+      <h1 className="text-2xl text-gray-500 ">Categorías</h1>
        {results && (
-         <div className=""> 
+         <div className="bg-stone-50 rounded-md mt-5"> 
            <section>
-             <article className="mw-100 grid grid-cols-2  md:grid-cols-3  lg:grid-cols-4   gap-4">
+             <article>
                {results.map((category: { id: string; name: string }) => (
-                 <Link href={`/categories/${category.id}`} key={category.id}>
-                   <div className="card card-category items-center text-center p-5 flex justify-center">
-                     <div>
-                       <p className="text-md">{category.name}</p>
-                     </div>
-                   </div>
-                 </Link>
-
+                 <div>
+                   <SubCategories params={{
+                     id: category.id }} />
+                     <hr/>
+                 </div>
                ))}
              </article>
            </section>

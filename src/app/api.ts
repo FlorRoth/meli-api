@@ -66,6 +66,17 @@ const api = {
                 };
             }[];
         }>
+        ),
+        category: (id: string)  =>  
+        fetch (`https://api.mercadolibre.com/categories/${id}`)
+        .then(res => res.json() as Promise <{
+            name: string
+            children_categories : {
+                id: string,
+                name: string,
+                total_items_in_this_category: number
+            }[];
+        }>
         )
         
     },
