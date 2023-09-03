@@ -7,7 +7,18 @@
   color: CanvasText;
   color-scheme: light dark;
 }
-
+.card {
+  background-color: theme('colors.white');
+  border-radius: theme('borderRadius.lg');
+  padding: theme('spacing.6');
+  box-shadow: theme('boxShadow.xl');
+}
+.card-category {
+  height: 130px;
+}
+.dropdown-category {
+  height: 300px;
+}
 .product-img {
   height: 120px;
   width: 120px;

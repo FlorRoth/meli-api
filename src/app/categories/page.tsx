@@ -1,7 +1,7 @@
 import Link from "next/link";
 import api from "../api";
 
-export default async function CategoriesPage({ searchParams }: { searchParams: { search: string } }) {
+export default async function CategoriesPage() {
    const results = await api.categories.all();
    return (
      <div>
