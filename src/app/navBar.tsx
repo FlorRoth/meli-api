@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import './globals.css';
 import api from './api';
 
@@ -10,7 +11,11 @@ interface Category {
 
 export default function NavBar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [results, setResults] = useState<Category[]>([]);; 
+  const [isNavBarMobileOpen, setIsNavBarMobileOpen] = useState(false);
+  const [results, setResults] = useState<Category[]>([]);
+
+  const isSelectedCategories = location.pathname.includes('/categories');
+  const isSelectedProducts = location.pathname.includes('/items');
 
   useEffect(() => {
 
@@ -29,14 +34,26 @@ export default function NavBar() {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+  const navBarMobile = () => {
+    setIsNavBarMobileOpen(!isNavBarMobileOpen);
+    console.log(isNavBarMobileOpen);
+  };
 
   return (
     <nav className="bg-yellow-300">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
-        <div className="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4  md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-yellow-300">
+      <div className='w-100 flex justify-end'>
+        <button data-collapse-toggle="navbar-dropdown" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden mb-1" aria-controls="navbar-dropdown" onClick={navBarMobile} aria-expanded={isNavBarMobileOpen}>
+          <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+          </svg>
+        </button>
+      </div>
+
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-0 md:p-2">
+        <div className={` ${isNavBarMobileOpen ? 'block' : 'hidden'} w-full md:block md:w-auto" id="navbar-dropdown`}>
+          <ul className="flex flex-col font-medium p-4 md:p-0 md:mt-4  md:flex-row md:space-x-8  md:border-0 bg-yellow-300">
             <li>
-              <a href="/" className="block py-2 pl-3 pr-4 text-gray-500 font-thin" aria-current="page">
+              <a href="/" className={`${location.pathname === '/' ? 'bg-white  rounded' :  'bg-yellow-300'} block py-2 pl-3 pr-4 text-gray-500 font-thin`} aria-current="page">
                 Inicio
               </a>
             </li>
@@ -44,7 +61,7 @@ export default function NavBar() {
               <button
                 id="dropdownNavbarLink"
                 onClick={toggleDropdown}
-                className="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-500 font-thin "
+                className={` ${isSelectedCategories ? 'bg-white  rounded' :  'bg-yellow-300'} flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-500 font-thin `}
                 aria-expanded={isDropdownOpen}
               >
                 Categorias
@@ -80,7 +97,7 @@ export default function NavBar() {
               </div>
             </li>
             <li>
-              <a href="#" className="block py-2 pl-3 pr-4 text-gray-500 font-thin">
+              <a href="/items" className= {`${isSelectedProducts ? 'bg-white  rounded' :  'bg-yellow-300'} block py-2 pl-3 pr-4 text-gray-500 font-thin`}>
                 Productos
               </a>
             </li>
