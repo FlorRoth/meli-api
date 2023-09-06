@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import './globals.css';
 import api from './api';
+import { usePathname } from 'next/navigation'
+
 
 interface Category {
   id: string;
@@ -14,8 +16,9 @@ export default function NavBar() {
   const [isNavBarMobileOpen, setIsNavBarMobileOpen] = useState(false);
   const [results, setResults] = useState<Category[]>([]);
 
-  const isSelectedCategories = location.pathname.includes('/categories');
-  const isSelectedProducts = location.pathname.includes('/items');
+  const pathname = usePathname()
+  const isSelectedCategories = pathname.includes('/categories');
+  const isSelectedProducts = pathname.includes('/items');
 
   useEffect(() => {
 
@@ -44,7 +47,7 @@ export default function NavBar() {
       <div className='w-100 flex justify-end'>
         <button data-collapse-toggle="navbar-dropdown" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden mb-1" aria-controls="navbar-dropdown" onClick={navBarMobile} aria-expanded={isNavBarMobileOpen}>
           <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
           </svg>
         </button>
       </div>
@@ -53,7 +56,7 @@ export default function NavBar() {
         <div className={` ${isNavBarMobileOpen ? 'block' : 'hidden'} w-full md:block md:w-auto" id="navbar-dropdown`}>
           <ul className="flex flex-col font-medium p-4 md:p-0 md:mt-4  md:flex-row md:space-x-8  md:border-0 bg-yellow-300">
             <li>
-              <a href="/" className={`${location.pathname === '/' ? 'bg-white  rounded' :  'bg-yellow-300'} block py-2 pl-3 pr-4 text-gray-500 font-thin`} aria-current="page">
+              <a href="/" className={`${pathname === '/' ? 'bg-white  rounded' :  'bg-yellow-300'} block py-2 pl-3 pr-4 text-gray-500 font-thin`} aria-current="page">
                 Inicio
               </a>
             </li>
@@ -72,7 +75,7 @@ export default function NavBar() {
                   fill="none"
                   viewBox="0 0 10 6"
                 >
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                 </svg>
               </button>
               <div

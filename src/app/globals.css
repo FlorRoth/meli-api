@@ -9,12 +9,12 @@
 }
 .card {
   background-color: theme('colors.white');
-  border-radius: theme('borderRadius.lg');
-  padding: theme('spacing.6');
+  border-radius: theme('borderRadius.md');
   box-shadow: theme('boxShadow.xl');
 }
-.card-category {
-  height: 130px;
+.card-products {
+  width: 300px;
+  height: 380px;
 }
 .dropdown-category {
   height: 300px;
